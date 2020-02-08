@@ -1,8 +1,7 @@
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { NZ_I18N, zh_CN } from 'ng-zorro-antd';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,11 +17,10 @@ registerLocaleData(zh);
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
     HttpClientModule,
     DashboardModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent],

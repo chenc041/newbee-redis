@@ -1,9 +1,9 @@
 <nz-layout>
-  <nz-sider nzWidth="380">
+  <nz-sider nzWidth="300px">
     <div class="redis-key-header" (click)="handleDemo()">
       header
     </div>
-    <nz-list [nzDataSource]="keys" [nzRenderItem]="defaultItem">
+    <nz-list ngClass='list-item-wrap' [nzDataSource]="keys" [nzRenderItem]="defaultItem">
       <ng-template #defaultItem let-item>
         <nz-list-item (click)="handleItem(item)">
           <span>{{ item }}</span>
@@ -12,7 +12,19 @@
     </nz-list>
   </nz-sider>
   <nz-layout>
-    <nz-header>Header</nz-header>
+    <nz-header>
+      <div style="text-align: right;">
+        <a nz-dropdown [nzDropdownMenu]="menu">
+          操作
+          <i nz-icon nzType="down"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>登出</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </nz-header>
     <nz-content>
       <router-outlet></router-outlet>
     </nz-content>

@@ -13,7 +13,32 @@ export class DashboardComponent implements OnInit {
   keys: Ikeys;
 
   ngOnInit() {
-    this.keys = ['1', '2,', '3,', '4', '5', '6', '8', '7', '9', '0', '10', '1112'];
+    this.keys = [
+      '1',
+      '2,',
+      '3,',
+      '4',
+      '5',
+      '6',
+      '8',
+      '7',
+      '9',
+      '0',
+      '10',
+      '12',
+      '1',
+      '2,',
+      '3,',
+      '4',
+      '5',
+      '6',
+      '8',
+      '7',
+      '9',
+      '0',
+      '10',
+      '1112',
+    ];
   }
   handleItem(item: string) {
     console.log('xxxxx', item, 'xxx');

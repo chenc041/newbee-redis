@@ -1,0 +1,51 @@
+// 基础样式
+@import '~ng-zorro-antd/style/entry.less';
+@import '~ng-zorro-antd/button/style/entry.less';
+
+// 自定义样式
+.content-header {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  padding: 30px 15px;
+  justify-content: flex-start;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.key-value {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.key-name {
+  flex: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.key-operate-wrap {
+  flex: 1;
+  display: flex;
+  margin-left: 15px;
+  justify-content: flex-end;
+}
+
+.content-header .key-ttl,
+.content-header .key-delete,
+.content-header .key-rename,
+.content-header .key-reload,
+.content-header .key-set-ttl {
+  display: flex;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  margin-left: 10px;
+  text-align: left;
+}
