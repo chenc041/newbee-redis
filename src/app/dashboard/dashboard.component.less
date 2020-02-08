@@ -1,2 +1,41 @@
 @import '~ng-zorro-antd/style/entry.less'; /* 引入基本样式 */
 @import '~ng-zorro-antd/button/style/entry.less'; /* 引入组件样式 */
+@import '~ng-zorro-antd/list/style/entry.less'; /* 引入组件样式 */
+
+// layout 基础样式
+:host {
+  text-align: center;
+}
+
+nz-header {
+  background: #7dbcea;
+}
+
+nz-sider {
+  height: 100vh;
+  width: 300px !important;
+  background-color: #fff;
+}
+
+nz-content {
+  min-height: 120px;
+  background-color: #fff;
+  border: 1px solid #333333;
+}
+
+nz-layout {
+  margin-bottom: 48px;
+}
+
+nz-layout:last-child {
+  margin: 0;
+}
+
+// 自定义样式
+
+.redis-key-header {
+  height: 120px;
+  color: #333333;
+  text-align: center;
+  line-height: 120px;
+}

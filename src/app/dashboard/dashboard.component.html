@@ -1,2 +1,20 @@
-<p>dashboard works!</p>
-<button nz-button nzType="primary">Primary</button>
+<nz-layout>
+  <nz-sider nzWidth="380">
+    <div class="redis-key-header" (click)="handleDemo()">
+      header
+    </div>
+    <nz-list [nzDataSource]="keys" [nzRenderItem]="defaultItem">
+      <ng-template #defaultItem let-item>
+        <nz-list-item (click)="handleItem(item)">
+          <span>{{ item }}</span>
+        </nz-list-item>
+      </ng-template>
+    </nz-list>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>Header</nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
