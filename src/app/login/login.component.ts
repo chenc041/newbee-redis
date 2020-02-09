@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from './login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   validateForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, readonly loginService: LoginService) {}
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log('----', this.validateForm.status);
+    this.loginService.submitLogin(this.validateForm.value);
   }
 
   ngOnInit(): void {

@@ -24,7 +24,10 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.less", "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"],
+            "styles": [
+              "src/styles.less",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -62,7 +65,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "hmrWarning": false,
-            "browserTarget": "hello-ng-redis-app:build"
+            "browserTarget": "hello-ng-redis-app:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -99,7 +103,11 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
             "exclude": ["**/node_modules/**"]
           }
         },
