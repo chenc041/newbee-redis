@@ -15,6 +15,8 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 // 配置 angular i18n
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 registerLocaleData(zh);
 
 const antDesignIcons = AllIcons as {
@@ -32,7 +34,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     LoginModule,
     DashboardModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: true || environment.production
+    })
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
