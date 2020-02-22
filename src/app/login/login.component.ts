@@ -17,13 +17,12 @@ export class LoginComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    console.log('----', this.validateForm.status);
     this.loginService.submitLogin(this.validateForm.value);
   }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      host: [null, [Validators.required]],
       password: [null, [Validators.required]],
       port: [null, [Validators.required]],
       db: [null, [Validators.required]]

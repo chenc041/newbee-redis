@@ -9,8 +9,9 @@ export class LoginService {
   constructor(readonly http: HttpClient) {}
 
   submitLogin(data: any) {
-    return this.http
-      .post<{ name: string }>(environment.apiUrl + '/api/v1/login', data)
-      .subscribe(x => console.log('x', x));
+    return this.http.post<boolean>(environment.apiUrl + '/api/v1/redis/login', data).subscribe(
+      x => console.log(x),
+      err => console.log(err, 'error')
+    );
   }
 }

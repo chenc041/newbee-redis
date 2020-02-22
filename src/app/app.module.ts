@@ -22,9 +22,7 @@ registerLocaleData(zh);
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
-const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
-  key => antDesignIcons[key]
-);
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key]);
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +34,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     AppRoutingModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: true || environment.production
+      enabled: environment.production
     })
   ],
   providers: [

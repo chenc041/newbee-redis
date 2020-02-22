@@ -2,30 +2,31 @@
     <div class="app-name">Hello_Redis</div>
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
         <nz-form-item>
-            <nz-form-control nzErrorTip="请输入用户名!">
-                <nz-input-group nzPrefixIcon="user">
-                    <input type="text" nz-input formControlName="userName" placeholder="用户名" />
+            <nz-form-control nzErrorTip="请输入host!">
+                <nz-input-group nzPrefixIcon="setting">
+                    <input type="text" nz-input formControlName="host" placeholder="host" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control nzErrorTip="请输入密码!">
                 <nz-input-group nzPrefixIcon="lock">
-                    <input type="password" nz-input formControlName="password" placeholder="密码" autocomplete="false" />
+                    <input type="password" nz-input formControlName="password" placeholder="password"
+                        autocomplete="false" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control nzErrorTip="请输入端口!">
                 <nz-input-group nzPrefixIcon="number">
-                    <input type="text" nz-input formControlName="port" placeholder="端口" autocomplete="false" />
+                    <input type="number" nz-input formControlName="port" placeholder="port" autocomplete="false" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control nzErrorTip="请输入DB!">
                 <nz-input-group nzPrefixIcon="database">
-                    <input type="text" nz-input formControlName="db" placeholder="DB" autocomplete="false" />
+                    <input type="number" nz-input formControlName="db" placeholder="db" autocomplete="false" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
