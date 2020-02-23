@@ -23,7 +23,32 @@
       </div>
     </nz-header>
     <nz-content>
-      <router-outlet></router-outlet>
+      <div class="content-header">
+        <div class="key-name key-operate">
+          <span class="key-value">redisKey: </span>
+          <input nz-input placeholder="key name" [(ngModel)]="redisKey" />
+        </div>
+        <div class="key-operate-wrap">
+          <div class="key-ttl key-operate">
+            <button nz-button nzType="primary">{{redisTtl}}</button>
+          </div>
+          <div class="key-reload key-operate">
+            <button nz-button nzType="primary">刷新</button>
+          </div>
+          <div class="key-rename key-operate">
+            <button nz-button nzType="primary">重命名</button>
+          </div>
+          <div class="key-set-ttl key-operate">
+            <button nz-button nzType="primary">重置TTL</button>
+          </div>
+          <div class="key-delete key-operate">
+            <button nz-button nzType="danger">删除</button>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        nihao
+      </div>
     </nz-content>
   </nz-layout>
 </nz-layout>

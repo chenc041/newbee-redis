@@ -17,7 +17,9 @@ export class LoginComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    this.loginService.submitLogin(this.validateForm.value);
+    if (this.validateForm.valid) {
+      this.loginService.login(this.validateForm.value);
+    }
   }
 
   ngOnInit(): void {
