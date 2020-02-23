@@ -1,7 +1,10 @@
 <nz-layout>
   <nz-sider nzWidth="300px">
-    <div class="redis-key-header" (click)="handleDemo()">
-      header
+    <div class="redis-key-header">
+      <span class="db-name">数据库: </span>
+      <nz-select [(ngModel)]="selectedValue" nzPlaceHolder="请选择 redis db">
+        <nz-option *ngFor='let db of dbs' nzValue="{{db}}" nzLabel="{{db}}"></nz-option>
+      </nz-select>
     </div>
     <nz-list ngClass='list-item-wrap' [nzDataSource]="keys" [nzRenderItem]="defaultItem">
       <ng-template #defaultItem let-item>
@@ -14,15 +17,9 @@
   <nz-layout>
     <nz-header>
       <div style="text-align: right;">
-        <a nz-dropdown [nzDropdownMenu]="menu">
-          操作
-          <i nz-icon nzType="down"></i>
+        <a>
+          退出
         </a>
-        <nz-dropdown-menu #menu="nzDropdownMenu">
-          <ul nz-menu nzSelectable>
-            <li nz-menu-item>登出</li>
-          </ul>
-        </nz-dropdown-menu>
       </div>
     </nz-header>
     <nz-content>

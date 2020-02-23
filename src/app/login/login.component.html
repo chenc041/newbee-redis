@@ -1,6 +1,6 @@
 <div class="login-wrap">
     <div class="app-name">Hello_Redis</div>
-    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <form nz-form [formGroup]="validateForm" #itemForm='ngForm' class="login-form" (ngSubmit)="submitForm()">
         <nz-form-item>
             <nz-form-control nzErrorTip="请输入host!">
                 <nz-input-group nzPrefixIcon="setting">
@@ -36,4 +36,5 @@
             </nz-form-control>
         </nz-form-item>
     </form>
+    <div>{{itemForm.form.valid}}</div>
 </div>
