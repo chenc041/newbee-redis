@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NZ_I18N, zh_CN, NZ_ICONS } from 'ng-zorro-antd';
+import { NZ_I18N, zh_CN, NZ_ICONS, NzConfig, NZ_CONFIG } from 'ng-zorro-antd';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 registerLocaleData(zh);
 
+const ngZorroConfig: NzConfig = {
+  message: { nzTop: 20, nzDuration: 3000 },
+  notification: { nzTop: 20, nzDuration: 3000 }
+};
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
@@ -39,7 +43,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
-    { provide: NZ_ICONS, useValue: icons }
+    { provide: NZ_ICONS, useValue: icons },
+    { provide: NZ_CONFIG, useValue: ngZorroConfig }
   ],
   bootstrap: [AppComponent]
 })

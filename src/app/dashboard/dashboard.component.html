@@ -2,23 +2,26 @@
   <nz-sider nzWidth="300px">
     <div class="redis-key-header">
       <span class="db-name">数据库: </span>
-      <nz-select [(ngModel)]="selectedValue" nzPlaceHolder="请选择 redis db">
+      <nz-select [(ngModel)]="selectedDb" nzPlaceHolder="请选择 redis db">
         <nz-option *ngFor='let db of dbs' nzValue="{{db}}" nzLabel="{{db}}"></nz-option>
       </nz-select>
+      <button nz-button nzType="primary" nzSize="small" (click)="handleAddKey()">新增</button>
     </div>
     <nz-list ngClass='list-item-wrap' [nzDataSource]="keys" [nzRenderItem]="defaultItem">
       <ng-template #defaultItem let-item>
         <nz-list-item (click)="handleItem(item)">
-          <span class="redis-key-item" nz-tooltip nzTooltipTitle="{{item}}">{{item}}</span>
+          <span class="redis-key-item" nz-tooltip nzTooltipPlacement='rightBottom'
+            nzTooltipTitle="{{item}}">{{item}}</span>
         </nz-list-item>
       </ng-template>
     </nz-list>
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <div style="text-align: right;">
-        <a (click)="handleLogout()">
-          退出
+      <div class="app-name">Hello_Redis</div>
+      <div class="logout-btn">
+        <a nz-popconfirm nzPopconfirmTitle="要登出吗?" nzPopconfirmPlacement="leftBottom" (nzOnConfirm)="handleLogout()">
+          {{userName}}
         </a>
       </div>
     </nz-header>
@@ -33,22 +36,36 @@
             <button nz-button nzType="primary">{{redisTtl}}</button>
           </div>
           <div class="key-reload key-operate">
-            <button nz-button nzType="primary">刷新</button>
+            <button nz-button nzType="primary" (click)="hanldeRefresh()">刷新</button>
           </div>
           <div class="key-rename key-operate">
-            <button nz-button nzType="primary">重命名</button>
+            <button nz-button nzType="primary" (click)="handleRenameOfKey()">重命名</button>
           </div>
           <div class="key-set-ttl key-operate">
-            <button nz-button nzType="primary">重置TTL</button>
+            <button nz-button nzType="primary" (click)="handleResetTtl()">重置TTL</button>
           </div>
           <div class="key-delete key-operate">
-            <button nz-button nzType="danger" (click)="handleDelete(redisKey)">删除</button>
+            <button nz-button nzType="danger" nz-popconfirm nzPopconfirmTitle="确定要删除这个key吗?"
+              nzPopconfirmPlacement="leftTop" (nzOnConfirm)="handleDelete(redisKey)">删除</button>
           </div>
         </div>
       </div>
       <div class="content">
         {{content}}
       </div>
+      <nz-modal [(nzVisible)]="isVisible" nzTitle="{{modalTitle}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+        <div *ngIf="operatorType === 'rename'">
+          <input nz-input placeholder="key 名称" [(ngModel)]="newKey" />
+        </div>
+        <div *ngIf="operatorType === 'resetTtl'">
+          <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
+        </div>
+        <div *ngIf="operatorType === 'add'">
+          <input nz-input placeholder="key 名称" [(ngModel)]="newKey" style="margin-bottom: 30px;" />
+          <input nz-input placeholder="key 值" [(ngModel)]="redisValue" style="margin-bottom: 30px;" />
+          <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
+        </div>
+      </nz-modal>
     </nz-content>
   </nz-layout>
 </nz-layout>

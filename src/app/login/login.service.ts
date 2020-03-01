@@ -10,18 +10,17 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
-  constructor(readonly http: HttpClient, readonly router: Router, private message: NzMessageService) {}
+  constructor(readonly router: Router, readonly http: HttpClient, private message: NzMessageService) {}
 
   login(data: LoginType) {
-    return this.http.post<Response<boolean>>(environment.apiUrl + '/api/v1/redis/login', data).subscribe(
-      val => {
-        if (val.statusCode === 200 && val.data) {
-          sessionStorage.setItem(Constants.LOGIN_USER_NAME, data.name);
-          sessionStorage.setItem(Constants.LOGIN_SUCCESS, 'true');
-          this.router.navigateByUrl(Constants.LOGIN_SUCCESS_REDIRECT_URL);
-        }
-      },
-      err => this.message.error('登录失败, 请稍后重试!!', { nzDuration: 3000 })
-    );
+    return this.http.post<Response<boolean>>(environment.apiUrl + '/api/v1/redis/login', data).subscribe(val => {
+      if (val.statusCode === 200 && val.data) {
+        sessionStorage.setItem(Constants.LOGIN_USER_NAME, data.name);
+        sessionStorage.setItem(Constants.LOGIN_SUCCESS, 'true');
+        this.router.navigateByUrl(Constants.LOGIN_SUCCESS_REDIRECT_URL);
+      } else {
+        return this.message.error('登录失败, 请稍后重试!!');
+      }
+    });
   }
 }

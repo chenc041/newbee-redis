@@ -6,10 +6,13 @@ import {
   NzLayoutModule,
   NzButtonModule,
   NzListModule,
-  NzDropDownModule,
+  NzModalModule,
+  NzInputModule,
   NzSelectModule,
   NzToolTipModule,
-  NzMessageService
+  NzDropDownModule,
+  NzMessageService,
+  NzPopconfirmModule
 } from 'ng-zorro-antd';
 
 @NgModule({
@@ -18,12 +21,15 @@ import {
   imports: [
     FormsModule,
     CommonModule,
+    NzListModule,
+    NzInputModule,
+    NzModalModule,
     NzButtonModule,
     NzLayoutModule,
-    NzListModule,
-    NzDropDownModule,
     NzSelectModule,
-    NzToolTipModule
+    NzToolTipModule,
+    NzDropDownModule,
+    NzPopconfirmModule
   ]
 })
 export class DashboardModule {}

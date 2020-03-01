@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Constants } from '../enum/constants.enum';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -9,23 +9,35 @@ import { DashboardService } from './dashboard.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private service: DashboardService, readonly message: NzMessageService) {}
   dbs: string[];
   keys: string[];
   content: string;
-  selectedValue: string;
+  userName: string;
+  isVisible = false;
+  selectedDb: string;
+  modalTitle: '重置ttl' | '重命名' | '新增';
+  operatorType: 'rename' | 'resetTtl' | 'add';
 
+  @Input() redisTtl = 0;
+  @Input() newKey: string;
   @Input() redisKey: string;
-  @Input() redisTtl: number;
+  @Input() expireTime: number;
+  @Input() redisValue: string;
 
   ngOnInit() {
     if (sessionStorage.getItem(Constants.LOGIN_SUCCESS) !== 'true') {
       return this.handleRedirectLogin();
     }
     this.handleGetKeys();
-    this.selectedValue = '0';
+    this.selectedDb = '0';
+    this.userName = sessionStorage.getItem(Constants.LOGIN_USER_NAME);
     this.dbs = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
+  }
+
+  ngOnDestroy() {
+    sessionStorage.removeItem(Constants.LOGIN_SUCCESS);
   }
 
   handleItem(key: string) {
@@ -43,19 +55,44 @@ export class DashboardComponent implements OnInit {
   }
 
   handleGetKeys() {
-    return this.service.handleKeys().subscribe(val => {
+    this.service.handleKeys().subscribe(val => {
       if (val.statusCode === 200) {
         this.keys = val.data;
-        this.redisKey = val.data ? val.data[0] : '';
-        this.handleItem(this.redisKey);
+        if (val.data.length) {
+          this.redisKey = val.data ? val.data[0] : '';
+          this.handleItem(this.redisKey);
+        }
       }
     });
   }
 
-  handleRenameOfKey() {}
+  handleRenameOfKey() {
+    this.isVisible = true;
+    this.modalTitle = '重命名';
+    this.operatorType = 'rename';
+  }
+
+  handleResetTtl() {
+    this.isVisible = true;
+    this.modalTitle = '重置ttl';
+    this.operatorType = 'resetTtl';
+  }
+
+  hanldeRefresh() {
+    this.operatorType = 'resetTtl';
+  }
+
+  handleAddKey() {
+    this.isVisible = true;
+    this.modalTitle = '新增';
+    this.operatorType = 'add';
+  }
 
   handleDelete(key: string) {
-    return this.service.handleDelete(key).subscribe(val => {
+    if (!key) {
+      return this.message.error('暂无可删除 key');
+    }
+    this.service.handleDelete(key).subscribe(val => {
       if (val.statusCode === 200 && val.data) {
         this.handleGetKeys();
         return this.message.success(`${key} 删除成功!`);
@@ -70,5 +107,44 @@ export class DashboardComponent implements OnInit {
 
   handleRedirectLogin() {
     this.router.navigateByUrl(Constants.UNLOGIN_FAILED_REDIRECT_URL);
+  }
+
+  handleCancel() {
+    this.isVisible = false;
+  }
+
+  handleOk() {
+    this.isVisible = false;
+    const { newKey, expireTime, redisValue, operatorType, redisKey } = this;
+    if ('add' === operatorType) {
+      return this.service.handleSetKey(newKey, redisValue, expireTime).subscribe(val => {
+        if (val.statusCode === 200 && val.data) {
+          this.handleGetKeys();
+          return this.message.success(`key ${newKey} 新增成功!`);
+        } else {
+          return this.message.error(`key ${newKey} 新增失败!`);
+        }
+      });
+    }
+    if ('resetTtl' === operatorType) {
+      return this.service.handleResetTtlOfKey(redisKey, expireTime).subscribe(val => {
+        if (val.statusCode === 200 && val.data) {
+          this.handleGetKeys();
+          return this.message.success(`key ${redisKey} 过期时间重置成功!`);
+        } else {
+          return this.message.error(`key ${redisKey} 过期时间重置失败!`);
+        }
+      });
+    }
+    if ('rename' === operatorType) {
+      return this.service.handleRename(redisKey, newKey).subscribe(val => {
+        if (val.statusCode === 200) {
+          this.handleGetKeys();
+          return this.message.success(`key ${redisKey} 重命名成功!`);
+        } else {
+          return this.message.error(`key ${redisKey} 重命名失败!`);
+        }
+      });
+    }
   }
 }

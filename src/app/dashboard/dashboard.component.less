@@ -1,6 +1,7 @@
 @import '~ng-zorro-antd/style/entry.less'; /* 引入基本样式 */
 @import '~ng-zorro-antd/button/style/entry.less'; /* 引入组件样式 */
 @import '~ng-zorro-antd/list/style/entry.less'; /* 引入组件样式 */
+@import '~ng-zorro-antd/input/style/entry.less'; /* 引入组件样式 */
 
 // layout 基础样式
 :host {
@@ -8,7 +9,9 @@
 }
 
 nz-header {
+  display: flex;
   background: #ffffff;
+  justify-content: space-between;
   border-bottom: 1px solid #eee;
 }
 
@@ -32,39 +35,45 @@ nz-layout:last-child {
 }
 
 nz-select {
-  width: 200px;
+  width: 160px;
+  margin: 0 10px;
+}
+
+nz-sider {
+  border-right: 1px solid #eee;
 }
 
 // 自定义样式
-
 .redis-key-header {
   top: 0;
+  z-index: 10;
   width: 300px;
   height: 64px;
-  z-index: 10;
   position: fixed;
   color: #333333;
-  text-align: center;
   line-height: 64px;
+  text-align: center;
   background-color: #fff;
   border-right: 1px solid #eee;
   border-bottom: 1px solid #eee;
-}
-
-.db-name {
-  margin-right: 10px;
 }
 
 .list-item-wrap {
   margin-top: 64px;
   text-align: center;
 }
-nz-sider {
-  border-right: 1px solid #eee;
+
+.app-name {
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  justify-self: center;
 }
 
-// 操作
-// 自定义样式
+.logout-btn {
+  justify-self: flex-end;
+}
+
 .content-header {
   width: 100%;
   height: 40px;
@@ -86,7 +95,7 @@ nz-sider {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .key-operate-wrap {
@@ -117,6 +126,7 @@ nz-sider {
   display: block;
   padding: 0 15px;
   cursor: pointer;
+  text-align: left;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
