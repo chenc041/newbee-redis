@@ -17,17 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hello-ng-redis-app",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
-            "styles": [
-              "src/styles.less",
-              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
-            ],
+            "styles": ["src/styles.less", "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"],
             "scripts": []
           },
           "configurations": {
@@ -106,11 +103,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
+            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
