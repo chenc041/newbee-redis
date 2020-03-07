@@ -11,13 +11,11 @@ import {
   NzSelectModule,
   NzToolTipModule,
   NzDropDownModule,
-  NzMessageService,
   NzPopconfirmModule
 } from 'ng-zorro-antd';
 
 @NgModule({
   declarations: [DashboardComponent],
-  providers: [NzMessageService],
   imports: [
     FormsModule,
     CommonModule,

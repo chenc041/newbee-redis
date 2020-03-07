@@ -7,6 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class StoreService {
   selectDb$ = new Subject<string>();
   userName$ = new Subject<string>();
+  authorization$ = new Subject<string>();
   loginSucess$ = new BehaviorSubject<boolean>(false);
 
   setUserName(value: string) {
@@ -15,5 +16,9 @@ export class StoreService {
 
   setLoginStatus(value: boolean) {
     this.loginSucess$.next(value);
+  }
+
+  setAuthorization(value: string) {
+    this.authorization$.next(value);
   }
 }

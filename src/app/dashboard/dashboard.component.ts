@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Constants } from '../enum/constants.enum';
+import { Constants } from '../constants/constants.enum';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DashboardService } from './dashboard.service';
 
@@ -55,15 +55,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   handleGetKeys() {
-    this.service.handleKeys().subscribe(val => {
-      if (val.statusCode === 200) {
-        this.keys = val.data;
-        if (val.data.length) {
-          this.redisKey = val.data ? val.data[0] : '';
-          this.handleItem(this.redisKey);
+    this.service.handleKeys().subscribe(
+      val => {
+        if (val.statusCode === 200) {
+          this.keys = val.data;
+          if (val.data.length) {
+            this.redisKey = val.data ? val.data[0] : '';
+            this.handleItem(this.redisKey);
+          }
         }
-      }
-    });
+        console.log(val, '=====');
+        if (val.statusCode === 401) {
+          this.message.error('暂无权限, 请登录重试');
+        }
+      },
+      error => console.log(error.error.statusCode, '======')
+    );
   }
 
   handleRenameOfKey() {
