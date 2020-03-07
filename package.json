@@ -9,8 +9,12 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "description": "Redis web client built by angular v9",
+  "author": {
+    "name": "chenc",
+    "email": "double_cl@163.com"
+  },
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.0",
     "@angular/common": "~9.0.0",
