@@ -1,6 +1,6 @@
 # HelloNgRedisApp
 
-- 由 angular v9, 构建的 redis web 客户端
+- Redis web client built by angular v9
 
 ## Development server
 
