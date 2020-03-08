@@ -8,7 +8,7 @@ import {
   NzListModule,
   NzModalModule,
   NzInputModule,
-  NzSelectModule,
+  NzIconModule,
   NzToolTipModule,
   NzDropDownModule,
   NzPopconfirmModule
@@ -18,13 +18,13 @@ import {
   declarations: [DashboardComponent],
   imports: [
     FormsModule,
+    NzIconModule,
     CommonModule,
     NzListModule,
     NzInputModule,
     NzModalModule,
     NzButtonModule,
     NzLayoutModule,
-    NzSelectModule,
     NzToolTipModule,
     NzDropDownModule,
     NzPopconfirmModule

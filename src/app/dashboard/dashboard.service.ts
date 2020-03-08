@@ -34,7 +34,7 @@ export class DashboardService {
     });
   }
 
-  handleSetKey(key: string, value: string, expireTime: number) {
+  handleSetKey(key: string, value: string, expireTime: string) {
     return this.http.post<Response<string>>(`${environment.apiUrl}/api/v1/redis/set`, {
       key,
       value,
@@ -46,7 +46,7 @@ export class DashboardService {
     return this.http.put<Response<string>>(`${environment.apiUrl}/api/v1/redis/rename`, { key, newKey });
   }
 
-  handleResetTtlOfKey(key: string, expireTime: number) {
+  handleResetTtlOfKey(key: string, expireTime: string) {
     return this.http.put<Response<number>>(`${environment.apiUrl}/api/v1/redis/expire`, { key, expireTime });
   }
 

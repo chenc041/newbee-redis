@@ -3,7 +3,7 @@
     <form nz-form [formGroup]="validateForm" #itemForm='ngForm' class="login-form" (ngSubmit)="submitForm()">
         <nz-form-item>
             <nz-form-control nzErrorTip="请输入用户名!">
-                <nz-input-group nzPrefixIcon="setting">
+                <nz-input-group nzPrefixIcon="user">
                     <input type="text" nz-input formControlName="name" placeholder="name" />
                 </nz-input-group>
             </nz-form-control>

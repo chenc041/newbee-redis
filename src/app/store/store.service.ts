@@ -1,24 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
-  selectDb$ = new Subject<string>();
-  userName$ = new Subject<string>();
-  authorization$ = new Subject<string>();
-  loginSucess$ = new BehaviorSubject<boolean>(false);
+  selectDb$ = new BehaviorSubject<number>(0);
 
-  setUserName(value: string) {
-    this.userName$.next(value);
+  setSelectDb(db: number) {
+    this.selectDb$.next(db);
   }
 
-  setLoginStatus(value: boolean) {
-    this.loginSucess$.next(value);
-  }
-
-  setAuthorization(value: string) {
-    this.authorization$.next(value);
+  getSelectDb() {
+    return this.selectDb$.asObservable();
   }
 }

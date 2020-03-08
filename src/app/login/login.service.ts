@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Constants } from '../constants/constants.enum';
 import { HttpClient } from '@angular/common/http';
+import { StoreService } from '../store/store.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { LoginType, Response } from '../types/index.interface';
 import { environment } from '../../environments/environment';
@@ -10,7 +11,12 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
-  constructor(readonly router: Router, readonly http: HttpClient, private message: NzMessageService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly http: HttpClient,
+    private readonly message: NzMessageService,
+    private readonly store: StoreService
+  ) {}
 
   login(data: LoginType) {
     return this.http
@@ -18,9 +24,11 @@ export class LoginService {
       .subscribe(val => {
         if (val.statusCode === 200 && val.data) {
           sessionStorage.setItem(Constants.LOGIN_USER_NAME, data.name);
-          sessionStorage.setItem(Constants.LOGIN_SUCCESS, 'true');
-          localStorage.setItem(Constants.USER_TOKEN, val.data.accessToken);
+          sessionStorage.setItem(Constants.USER_TOKEN, val.data.accessToken);
+          this.store.setSelectDb(data.db);
           this.router.navigateByUrl(Constants.LOGIN_SUCCESS_REDIRECT_URL);
+        } else {
+          this.message.error('登录失败!');
         }
       });
   }

@@ -39,7 +39,7 @@ export class CommonHttpInterceptor implements HttpInterceptor {
     let authReq: any;
     authReq = request.clone();
     if (request.url !== Constants.LOGIN_URL) {
-      const authToken = localStorage.getItem(Constants.USER_TOKEN);
+      const authToken = sessionStorage.getItem(Constants.USER_TOKEN);
       authReq = request.clone({
         headers: request.headers.set('Authorization', `Bearer ${authToken}`)
       });
