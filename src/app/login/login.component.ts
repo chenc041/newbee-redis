@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,12 +23,22 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
+    let fbObj = {
       name: ['chenc', [Validators.required]],
       host: ['127.0.0.1', [Validators.required]],
       password: ['1234567890', [Validators.required]],
       port: [6379, [Validators.required]],
       db: [2, [Validators.required]]
-    });
+    };
+    if (environment.production) {
+      fbObj = {
+        name: [null, [Validators.required]],
+        host: [null, [Validators.required]],
+        password: [null, [Validators.required]],
+        port: [null, [Validators.required]],
+        db: [null, [Validators.required]]
+      };
+    }
+    this.validateForm = this.fb.group(fbObj);
   }
 }
