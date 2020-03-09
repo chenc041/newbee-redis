@@ -26,7 +26,7 @@ export class LoginService {
           sessionStorage.setItem(Constants.LOGIN_USER_NAME, data.name);
           sessionStorage.setItem(Constants.USER_TOKEN, val.data.accessToken);
           this.store.setSelectDb(data.db);
-          this.router.navigateByUrl(Constants.LOGIN_SUCCESS_REDIRECT_URL);
+          setTimeout(() => this.router.navigateByUrl(Constants.LOGIN_SUCCESS_REDIRECT_URL), 1000);
         } else {
           this.message.error('登录失败!');
         }

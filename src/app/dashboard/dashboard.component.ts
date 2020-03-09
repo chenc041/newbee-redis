@@ -35,8 +35,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       return this.handleRedirectLogin();
     }
     this.handleGetKeys();
-    this.store.getSelectDb().subscribe(db => (this.selectedDb = db));
-    this.userName = sessionStorage.getItem(Constants.LOGIN_USER_NAME);
+    this.handleCurrentUser();
   }
 
   ngOnDestroy() {
@@ -157,6 +156,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  handleCurrentUser() {
+    this.service.handleUserInfo().subscribe(val => {
+      this.userName = val.data.name;
+      this.selectedDb = val.data.db;
+    });
   }
 
   private handleKeyOfTtl(key: string) {

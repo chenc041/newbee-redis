@@ -56,6 +56,10 @@ export class DashboardService {
     });
   }
 
+  handleUserInfo() {
+    return this.http.get<Response<{ name: string; db: number }>>(`${environment.apiUrl}/api/v1/redis/currentUser`);
+  }
+
   handleLogout() {
     return this.http.get<any>(`${environment.apiUrl}/api/v1/redis/logout`);
   }
