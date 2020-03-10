@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Constants } from '../constants/constants.enum';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Response } from '../types/index.interface';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 const CODE_MESSAGE = {
   200: '服务器成功返回请求的数据。',
@@ -27,7 +28,11 @@ const CODE_MESSAGE = {
 
 @Injectable()
 export class CommonHttpInterceptor implements HttpInterceptor {
-  constructor(private readonly message: NzMessageService, private readonly router: Router) {}
+  constructor(
+    private readonly message: NzMessageService,
+    private readonly dashboard: DashboardService,
+    private readonly router: Router
+  ) {}
 
   redirect(url: string) {
     setTimeout(() => {
@@ -44,7 +49,9 @@ export class CommonHttpInterceptor implements HttpInterceptor {
         headers: request.headers.set('Authorization', `Bearer ${authToken}`)
       });
     }
+    console.log('before');
     return next.handle(authReq).pipe(
+      tap(() => console.log('after')),
       catchError((err: HttpRequest<any> & { status: number }) => {
         this.message.error(CODE_MESSAGE[err.status]);
         this.redirect(Constants.UNLOGIN_FAILED_REDIRECT_URL);

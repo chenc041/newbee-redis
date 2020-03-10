@@ -56,6 +56,12 @@ export class DashboardService {
     });
   }
 
+  handleCheckExist(key: string) {
+    return this.http.get<Response<any>>(`${environment.apiUrl}/api/v1/redis/exist`, {
+      params: { key }
+    });
+  }
+
   handleUserInfo() {
     return this.http.get<Response<{ name: string; db: number }>>(`${environment.apiUrl}/api/v1/redis/currentUser`);
   }
