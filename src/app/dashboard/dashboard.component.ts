@@ -4,6 +4,8 @@ import { Constants } from '../constants/constants.enum';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DashboardService } from './dashboard.service';
 import { StoreService } from '../store/store.service';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -21,6 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   userName: string;
   isVisible = false;
   selectedDb: number;
+  searchText$ = new Subject<string>();
   modalTitle: '重置ttl' | '重命名' | '新增';
   operatorType: 'rename' | 'resetTtl' | 'add';
 
@@ -34,12 +37,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (!sessionStorage.getItem(Constants.USER_TOKEN)) {
       return this.handleRedirectLogin();
     }
+    this.searchText$
+      .pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        switchMap(value => {
+          return this.keys.filter(key => key.includes(value));
+        })
+      )
+      .subscribe(console.log);
     this.handleGetKeys();
     this.handleCurrentUser();
   }
 
   ngOnDestroy() {
     sessionStorage.removeItem(Constants.USER_TOKEN);
+  }
+
+  handleSearchValue(value: string) {
+    console.log(value, '=====');
+    this.searchText$.next(value);
   }
 
   handleItem(key: string) {

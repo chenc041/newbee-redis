@@ -1,7 +1,8 @@
 <nz-layout>
   <nz-sider nzWidth="300px">
     <div class="redis-key-header">
-      <input nz-input placeholder="search" class="searchInput" [(ngModel)]="redisKey" />
+      <input nz-input placeholder="search" class="searchInput" (keyup)="handleSearchValue($event.target.value)"
+        [(ngModel)]="redisKey" />
       <a>
         <i nz-icon [nzType]="'plus'" (click)="handleAddKey()"></i>
       </a>
