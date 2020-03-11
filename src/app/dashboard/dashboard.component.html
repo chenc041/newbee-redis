@@ -1,9 +1,10 @@
 <nz-layout>
   <nz-sider nzWidth="300px">
     <div class="redis-key-header">
-      <span class="db-name">数据库: </span>
-      <span style="margin-right: 15px;">{{selectedDb}}</span>
-      <button nz-button nzType="primary" nzSize="small" (click)="handleAddKey()">新增 Key</button>
+      <input nz-input placeholder="search" class="searchInput" [(ngModel)]="redisKey" />
+      <a>
+        <i nz-icon [nzType]="'plus'" (click)="handleAddKey()"></i>
+      </a>
     </div>
     <nz-list ngClass='list-item-wrap' [nzDataSource]="keys" [nzRenderItem]="defaultItem">
       <ng-template #defaultItem let-item>
@@ -22,6 +23,8 @@
         <a nz-popconfirm nzPopconfirmTitle="确定要登出吗?" nzPopconfirmPlacement="leftBottom" (nzOnConfirm)="handleLogout()">
           {{userName}}
         </a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a>DB: {{selectedDb}}</a>
       </div>
     </nz-header>
     <nz-content>

@@ -11,7 +11,8 @@ import {
   NzIconModule,
   NzToolTipModule,
   NzDropDownModule,
-  NzPopconfirmModule
+  NzPopconfirmModule,
+  NzDividerModule
 } from 'ng-zorro-antd';
 
 @NgModule({
@@ -24,6 +25,7 @@ import {
     NzInputModule,
     NzModalModule,
     NzButtonModule,
+    NzDividerModule,
     NzLayoutModule,
     NzToolTipModule,
     NzDropDownModule,
