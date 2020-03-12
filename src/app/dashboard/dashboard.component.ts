@@ -4,7 +4,7 @@ import { Constants } from '../constants/constants.enum';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DashboardService } from './dashboard.service';
 import { StoreService } from '../store/store.service';
-import { Subject } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-dashboard',
@@ -42,10 +42,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         debounceTime(200),
         distinctUntilChanged(),
         switchMap(value => {
-          return this.keys.filter(key => key.includes(value));
+          const results = this.keys.filter(key => key.includes(value));
+          return of(results);
         })
       )
-      .subscribe(console.log);
+      .subscribe(val => (this.keys = val));
     this.handleGetKeys();
     this.handleCurrentUser();
   }
@@ -55,7 +56,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   handleSearchValue(value: string) {
-    console.log(value, '=====');
     this.searchText$.next(value);
   }
 
