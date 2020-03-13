@@ -1,10 +1,9 @@
 <nz-layout>
   <nz-sider nzWidth="300px">
     <div class="redis-key-header">
-      <input nz-input placeholder="search" class="searchInput" (keyup)="handleSearchValue($event.target.value)"
-        [(ngModel)]="redisKey" />
+      <input nz-input placeholder="search" class="searchInput" (keyup)="handleSearchValue($event.target.value)" />
       <a>
-        <i nz-icon [nzType]="'plus'" (click)="handleAddKey()"></i>
+        <i nz-icon [nzType]="'plus'" (click)="handleOperator('新增', 'add')"></i>
       </a>
     </div>
     <nz-list ngClass='list-item-wrap' [nzDataSource]="keys" [nzRenderItem]="defaultItem">
@@ -42,10 +41,10 @@
             <button nz-button nzType="primary" (click)="hanldeRefresh(redisKey)">刷新</button>
           </div>
           <div class="key-rename key-operate">
-            <button nz-button nzType="primary" (click)="handleRenameOfKey()">重命名</button>
+            <button nz-button nzType="primary" (click)="handleOperator('重命名', 'rename')">重命名</button>
           </div>
           <div class="key-set-ttl key-operate">
-            <button nz-button nzType="primary" (click)="handleResetTtl()">重置TTL</button>
+            <button nz-button nzType="primary" (click)="handleOperator('重置ttl', 'resetTtl')">重置TTL</button>
           </div>
           <div class="key-delete key-operate">
             <button nz-button nzType="danger" nz-popconfirm nzPopconfirmTitle="确定要删除这个key吗?"

@@ -6,6 +6,7 @@ import { DashboardService } from './dashboard.service';
 import { StoreService } from '../store/store.service';
 import { Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { OperaterType, ModalTitle } from '../types/index.interface';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -23,9 +24,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   userName: string;
   isVisible = false;
   selectedDb: number;
+  backUpKeys: string[];
   searchText$ = new Subject<string>();
-  modalTitle: '重置ttl' | '重命名' | '新增';
-  operatorType: 'rename' | 'resetTtl' | 'add';
+  modalTitle: ModalTitle;
+  operatorType: OperaterType;
 
   @Input() redisTtl = 0;
   @Input() newKey: string;
@@ -42,7 +44,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         debounceTime(200),
         distinctUntilChanged(),
         switchMap(value => {
-          const results = this.keys.filter(key => key.includes(value));
+          let results: string[] = [];
+          if (value) {
+            results = this.keys.filter(key => key.includes(value));
+          } else {
+            results = this.backUpKeys;
+          }
           return of(results);
         })
       )
@@ -73,6 +80,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.service.handleKeys().subscribe(val => {
       if (val.statusCode === 200) {
         this.keys = val.data;
+        this.backUpKeys = val.data;
         if (val.data.length) {
           this.redisKey = val.data ? val.data[0] : '';
           this.handleItem(this.redisKey);
@@ -84,27 +92,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleRenameOfKey() {
+  handleOperator(title: ModalTitle, type: OperaterType) {
     this.isVisible = true;
-    this.modalTitle = '重命名';
-    this.operatorType = 'rename';
-  }
-
-  handleResetTtl() {
-    this.isVisible = true;
-    this.modalTitle = '重置ttl';
-    this.operatorType = 'resetTtl';
+    this.modalTitle = title;
+    this.operatorType = type;
   }
 
   hanldeRefresh(key: string) {
     this.handleKeyOfTtl(key);
-    this.operatorType = 'resetTtl';
-  }
-
-  handleAddKey() {
-    this.isVisible = true;
-    this.modalTitle = '新增';
-    this.operatorType = 'add';
   }
 
   handleDelete(key: string) {

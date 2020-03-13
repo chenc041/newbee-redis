@@ -10,3 +10,7 @@ export interface Response<T> {
   statusCode: number;
   data: T;
 }
+
+export type OperaterType = 'rename' | 'resetTtl' | 'add';
+
+export type ModalTitle = '重置ttl' | '重命名' | '新增';
