@@ -20,10 +20,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'hello-ng-redis-app'`, () => {
+  it(`should have as title 'hello-redis'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('hello-ng-redis-app');
+    expect(app.title).toEqual('hello-redis');
   });
 
   it('should render title', () => {
