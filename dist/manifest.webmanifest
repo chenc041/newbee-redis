@@ -1,6 +1,6 @@
 {
-  "name": "hello-ng-redis-app",
-  "short_name": "hello-ng-redis-app",
+  "name": "hello-redis",
+  "short_name": "hello-redis",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
