@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod --aot",
+    "start": "ng serve --open",
+    "build": "ng build --prod --aot --deploy-url=https://oss.chenc.site/redis/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "description": "Redis web client built by angular v9",
+  "description": "Redis web client built by angular v10",
   "author": {
     "name": "chenc",
     "email": "double_cl@163.com"

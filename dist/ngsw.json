@@ -1,23 +1,26 @@
 {
   "configVersion": 1,
-  "timestamp": 1596357139408,
+  "timestamp": 1597586875032,
   "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.d48e22f24a76d86aec25.js",
-        "/main-es5.d48e22f24a76d86aec25.js",
+        "/main-es2015.5ddfdea2dcb5379ed2de.js",
+        "/main-es5.5ddfdea2dcb5379ed2de.js",
         "/manifest.webmanifest",
-        "/polyfills-es2015.f2c5ab749249a66bdf26.js",
-        "/polyfills-es5.049f620af8c864cf4d88.js",
-        "/runtime-es2015.2a72476a5d16527f0a83.js",
-        "/runtime-es5.2a72476a5d16527f0a83.js",
-        "/styles.c6a9bfea055e8b88ccb6.css"
+        "/polyfills-es2015.a0fa45e0fa52702b64f0.js",
+        "/polyfills-es5.2dcde1efe3c1bf4aaa25.js",
+        "/runtime-es2015.72ad8a3517dd1789264d.js",
+        "/runtime-es5.72ad8a3517dd1789264d.js",
+        "/styles.b45297ca6fd0ede7c871.css"
       ],
       "patterns": []
     },
@@ -25,6 +28,9 @@
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "/assets/icons/redis-128.svg",
         "/assets/icons/redis-144.svg",
@@ -51,15 +57,15 @@
     "/assets/icons/redis-96.svg": "dfbc37a47b344c686baabfaf27ce9897ec080bd7",
     "/assets/icons/redis.svg": "d4934e5605f7397a4434cc2c2ebb20f924b3fb30",
     "/favicon.ico": "d6b9fb1fc1d0a4aadd699d017dfa98440439bec5",
-    "/index.html": "38a43d7a62ac0965f9063602fbe8ebab9c3f99c3",
-    "/main-es2015.d48e22f24a76d86aec25.js": "15bcbed71db8fb6bd31629c8290b3d2543a369bd",
-    "/main-es5.d48e22f24a76d86aec25.js": "2ebc64d7e721d6de5cf68ab9ea70cfa07c55a518",
+    "/index.html": "79b97e142d8b12eb2df57e82a3ad950c5fbcc5ce",
+    "/main-es2015.5ddfdea2dcb5379ed2de.js": "7554210301ccd44cc094fc18b5e517f0dc49d0b7",
+    "/main-es5.5ddfdea2dcb5379ed2de.js": "ba731daea2eeee8d2a53d72af129ee887b68107b",
     "/manifest.webmanifest": "37f34f1a6c38ba6d07573775e7a05d3e343db416",
-    "/polyfills-es2015.f2c5ab749249a66bdf26.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
-    "/polyfills-es5.049f620af8c864cf4d88.js": "8aa26ea87b9958c6bd13b7c257c0e9940438e684",
-    "/runtime-es2015.2a72476a5d16527f0a83.js": "58f279ccb67113c02d163656dbe0d8a0aa8e7213",
-    "/runtime-es5.2a72476a5d16527f0a83.js": "58f279ccb67113c02d163656dbe0d8a0aa8e7213",
-    "/styles.c6a9bfea055e8b88ccb6.css": "f714959229fb250494b8cac740e0188e6f1ccf0e"
+    "/polyfills-es2015.a0fa45e0fa52702b64f0.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
+    "/polyfills-es5.2dcde1efe3c1bf4aaa25.js": "ff14d90e08622190714660721edab5f43578829a",
+    "/runtime-es2015.72ad8a3517dd1789264d.js": "58f279ccb67113c02d163656dbe0d8a0aa8e7213",
+    "/runtime-es5.72ad8a3517dd1789264d.js": "58f279ccb67113c02d163656dbe0d8a0aa8e7213",
+    "/styles.b45297ca6fd0ede7c871.css": "adb79e9b657569ea131bd6cfa6735bea0125e3fc"
   },
   "navigationUrls": [
     {
