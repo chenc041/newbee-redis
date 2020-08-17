@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1597586875032,
+  "timestamp": 1597674344532,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,13 +13,13 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.5ddfdea2dcb5379ed2de.js",
-        "/main-es5.5ddfdea2dcb5379ed2de.js",
+        "/main-es2015.f04060fa95eb9796501d.js",
+        "/main-es5.f04060fa95eb9796501d.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.a0fa45e0fa52702b64f0.js",
         "/polyfills-es5.2dcde1efe3c1bf4aaa25.js",
-        "/runtime-es2015.72ad8a3517dd1789264d.js",
-        "/runtime-es5.72ad8a3517dd1789264d.js",
+        "/runtime-es2015.409e6590615fb48d139f.js",
+        "/runtime-es5.409e6590615fb48d139f.js",
         "/styles.b45297ca6fd0ede7c871.css"
       ],
       "patterns": []
@@ -57,14 +57,14 @@
     "/assets/icons/redis-96.svg": "dfbc37a47b344c686baabfaf27ce9897ec080bd7",
     "/assets/icons/redis.svg": "d4934e5605f7397a4434cc2c2ebb20f924b3fb30",
     "/favicon.ico": "d6b9fb1fc1d0a4aadd699d017dfa98440439bec5",
-    "/index.html": "79b97e142d8b12eb2df57e82a3ad950c5fbcc5ce",
-    "/main-es2015.5ddfdea2dcb5379ed2de.js": "7554210301ccd44cc094fc18b5e517f0dc49d0b7",
-    "/main-es5.5ddfdea2dcb5379ed2de.js": "ba731daea2eeee8d2a53d72af129ee887b68107b",
+    "/index.html": "32474391cc73cc23be8a8f0a0ea23611cb3857b3",
+    "/main-es2015.f04060fa95eb9796501d.js": "0c5aeebb893e31fd15694013add6e7213d4c397d",
+    "/main-es5.f04060fa95eb9796501d.js": "dbac72b82ded6cd851de46e7538cfdefd8e1e1cf",
     "/manifest.webmanifest": "37f34f1a6c38ba6d07573775e7a05d3e343db416",
     "/polyfills-es2015.a0fa45e0fa52702b64f0.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
     "/polyfills-es5.2dcde1efe3c1bf4aaa25.js": "ff14d90e08622190714660721edab5f43578829a",
-    "/runtime-es2015.72ad8a3517dd1789264d.js": "58f279ccb67113c02d163656dbe0d8a0aa8e7213",
-    "/runtime-es5.72ad8a3517dd1789264d.js": "58f279ccb67113c02d163656dbe0d8a0aa8e7213",
+    "/runtime-es2015.409e6590615fb48d139f.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/runtime-es5.409e6590615fb48d139f.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/styles.b45297ca6fd0ede7c871.css": "adb79e9b657569ea131bd6cfa6735bea0125e3fc"
   },
   "navigationUrls": [

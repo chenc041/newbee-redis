@@ -20,3 +20,31 @@
   text-align: center;
   margin-bottom: 30px;
 }
+
+.about-entry {
+  top: 30px;
+  left: 30px;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 100%;
+  animation-name: ani;
+  animation-duration: 2s;
+  box-shadow: 0 0 10px 4px #eee;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes ani {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
