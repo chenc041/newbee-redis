@@ -27,7 +27,10 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
-            "styles": ["src/styles.less", "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"],
+            "styles": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules/"]
+            },
             "scripts": []
           },
           "configurations": {
