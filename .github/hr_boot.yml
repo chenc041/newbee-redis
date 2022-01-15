@@ -1,4 +1,4 @@
 pullRequest:
   preview:
-    relay: |
+    replay: |
       Thie preview will be available after the ci is passed.
