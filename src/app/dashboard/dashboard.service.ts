@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Response } from '../types/index.interface';
-import { StoreService } from '../store/store.service';
+import { StoreService } from '../services/store.service';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
   constructor(readonly http: HttpClient, private store: StoreService) {}
@@ -13,24 +13,24 @@ export class DashboardService {
   handleKeys() {
     return this.http.get<Response<string[]>>(`${environment.apiUrl}/api/v1/redis/keys`, {
       params: {
-        partten: '*'
-      }
+        pattern: '*',
+      },
     });
   }
 
   handleKeyOfDetail(key: string) {
     return this.http.get<Response<string>>(`${environment.apiUrl}/api/v1/redis/key`, {
       params: {
-        key
-      }
+        key,
+      },
     });
   }
 
   handleKeyOfTtl(key: string) {
     return this.http.get<Response<number>>(`${environment.apiUrl}/api/v1/redis/ttl`, {
       params: {
-        key
-      }
+        key,
+      },
     });
   }
 
@@ -38,7 +38,7 @@ export class DashboardService {
     return this.http.post<Response<string>>(`${environment.apiUrl}/api/v1/redis/set`, {
       key,
       value,
-      time: expireTime
+      time: expireTime,
     });
   }
 
@@ -52,13 +52,13 @@ export class DashboardService {
 
   handleDelete(key: string) {
     return this.http.delete<Response<number>>(`${environment.apiUrl}/api/v1/redis/key`, {
-      params: { key }
+      params: { key },
     });
   }
 
   handleCheckExist(key: string) {
     return this.http.get<Response<any>>(`${environment.apiUrl}/api/v1/redis/exist`, {
-      params: { key }
+      params: { key },
     });
   }
 
