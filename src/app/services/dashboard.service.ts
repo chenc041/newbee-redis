@@ -62,6 +62,12 @@ export class DashboardService {
     });
   }
 
+  handleSwitchDb(db: number) {
+    return this.http.get<Response<number>>(`${environment.apiUrl}/api/v1/redis/select/db`, {
+      params: { db },
+    });
+  }
+
   handleUserInfo() {
     return this.http.get<Response<{ name: string; db: number }>>(`${environment.apiUrl}/api/v1/redis/currentUser`);
   }
