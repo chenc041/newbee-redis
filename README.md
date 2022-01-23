@@ -1,14 +1,12 @@
-# HelloRedis
+# RedisWebClient
 
-- Redis web client built by angular v9
+- Redis web client
 
 ## Example server
 
-<a href='https://redis.chenc.site'>hello-redis</a>
-> My server is expired, sorry.
+<a href='https://redis-web-client.surge.sh' target="__blank">RedisWebClient</a>
 
-### Features
-- ng v9
+### Tech
 - pwa
 - ng-zorro-antd
 

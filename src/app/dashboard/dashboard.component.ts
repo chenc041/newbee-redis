@@ -2,9 +2,9 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Constants } from '../constants/constants.enum';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { DashboardService } from './dashboard.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { StoreService } from '../services/store.service';
-import { Subject, of } from 'rxjs';
+import { Subject, of, takeUntil } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { OperateType, ModalTitle } from '../types/index.interface';
 @Component({
@@ -25,9 +25,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isVisible = false;
   selectedDb: number;
   backUpKeys: string[];
-  searchText$ = new Subject<string>();
   modalTitle: ModalTitle;
   operatorType: OperateType;
+  searchText$ = new Subject<string>();
+  destroy$ = new Subject();
 
   @Input() redisTtl = 0;
   @Input() newKey: string;
@@ -44,14 +45,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
         debounceTime(200),
         distinctUntilChanged(),
         switchMap((value) => {
-          let results: string[] = [];
+          let results: string[];
           if (value) {
             results = this.keys.filter((key) => key.includes(value));
           } else {
             results = this.backUpKeys;
           }
           return of(results);
-        })
+        }),
+        takeUntil(this.destroy$)
       )
       .subscribe((val) => (this.keys = val));
     this.handleGetKeys();
@@ -60,9 +62,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     sessionStorage.removeItem(Constants.USER_TOKEN);
+    this.destroy$.complete();
+    this.destroy$.unsubscribe();
   }
 
-  handleSearchValue(value: string) {
+  handleSearchValue(value: any) {
     this.searchText$.next(value);
   }
 

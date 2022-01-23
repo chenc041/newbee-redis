@@ -13,4 +13,4 @@ export interface Response<T> {
 
 export type OperateType = 'rename' | 'resetTtl' | 'add';
 
-export type ModalTitle = '重置ttl' | '重命名' | '新增';
+export type ModalTitle = '重置 TTL' | '重命名' | '新增';

@@ -1,41 +1,47 @@
 <nz-layout>
   <nz-sider nzWidth="300px">
     <div class="redis-key-header">
-      <input nz-input placeholder="search" class="searchInput" (keyup)="handleSearchValue($event.target.value)" />
+      <input nz-input placeholder="search" class="searchInput" (change)="handleSearchValue($event)" />
       <a>
         <i nz-icon [nzType]="'plus'" (click)="handleOperator('新增', 'add')"></i>
       </a>
     </div>
-    <nz-list ngClass='list-item-wrap' [nzDataSource]="keys" [nzRenderItem]="defaultItem">
+    <nz-list class="list-item-wrap" [nzDataSource]="keys" [nzRenderItem]="defaultItem">
       <ng-template #defaultItem let-item>
         <nz-list-item (click)="handleItem(item)">
-          <span class="redis-key-item" nz-tooltip nzTooltipPlacement='rightBottom' nzTooltipTitle="{{item}}">
+          <span class="redis-key-item" nz-tooltip nzTooltipPlacement="rightBottom" nzTooltipTitle="{{ item }}">
             <i nz-icon [nzType]="'key'"></i>
-            {{item}}</span>
+            {{ item }}
+          </span>
         </nz-list-item>
       </ng-template>
     </nz-list>
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <div class="app-name">Hello_Redis</div>
+      <div class="app-name">Redis_Web_Client</div>
       <div class="logout-btn">
-        <a nz-popconfirm nzPopconfirmTitle="确定要登出吗?" nzPopconfirmPlacement="leftBottom" (nzOnConfirm)="handleLogout()">
-          {{userName}}
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="确定要登出吗?"
+          nzPopconfirmPlacement="leftBottom"
+          (nzOnConfirm)="handleLogout()"
+        >
+          {{ userName }}
         </a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a>DB: {{selectedDb}}</a>
+        <a>DB: {{ selectedDb }}</a>
       </div>
     </nz-header>
     <nz-content>
       <div class="content-header">
         <div class="key-name key-operate">
-          <span class="key-value">redisKey: </span>
+          <span class="key-value">key: </span>
           <input nz-input placeholder="key name" [(ngModel)]="redisKey" />
         </div>
         <div class="key-operate-wrap">
           <div class="key-ttl key-operate">
-            <button nz-button nzType="primary">{{redisTtl}}</button>
+            <button nz-button nzType="primary">{{ redisTtl }}</button>
           </div>
           <div class="key-reload key-operate">
             <button nz-button nzType="primary" (click)="handleRefresh(redisKey)">刷新</button>
@@ -44,29 +50,47 @@
             <button nz-button nzType="primary" (click)="handleOperator('重命名', 'rename')">重命名</button>
           </div>
           <div class="key-set-ttl key-operate">
-            <button nz-button nzType="primary" (click)="handleOperator('重置ttl', 'resetTtl')">重置TTL</button>
+            <button nz-button nzType="primary" (click)="handleOperator('重置 TTL', 'resetTtl')">重置TTL</button>
           </div>
           <div class="key-delete key-operate">
-            <button nz-button nzType="danger" nz-popconfirm nzPopconfirmTitle="确定要删除这个key吗?"
-              nzPopconfirmPlacement="leftTop" (nzOnConfirm)="handleDelete(redisKey)">删除</button>
+            <button
+              nz-button
+              nzDanger
+              nz-popconfirm
+              nzPopconfirmTitle="确定要删除这个key吗?"
+              nzPopconfirmPlacement="leftTop"
+              (nzOnConfirm)="handleDelete(redisKey)"
+            >
+              删除
+            </button>
           </div>
         </div>
       </div>
       <div class="content">
-        {{content}}
+        {{ content }}
       </div>
-      <nz-modal [(nzVisible)]="isVisible" nzTitle="{{modalTitle}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-        <div *ngIf="operatorType === 'rename'">
-          <input nz-input placeholder="key 名称" [(ngModel)]="newKey" />
-        </div>
-        <div *ngIf="operatorType === 'resetTtl'">
-          <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
-        </div>
-        <div *ngIf="operatorType === 'add'">
-          <input nz-input placeholder="key 名称" [(ngModel)]="newKey" style="margin-bottom: 30px;" />
-          <input nz-input placeholder="key 值" [(ngModel)]="redisValue" style="margin-bottom: 30px;" />
-          <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
-        </div>
+      <nz-modal
+        [(nzVisible)]="isVisible"
+        nzTitle="{{ modalTitle }}"
+        (nzOnCancel)="handleCancel()"
+        (nzOnOk)="handleOk()"
+      >
+        <ng-container *nzModalContent>
+          <ng-template [ngSwitch]="operatorType">
+            <div *ngSwitchCase="operatorType === 'rename'">
+              <input nz-input placeholder="key 名称" [(ngModel)]="newKey" />
+            </div>
+            <div *ngSwitchCase="operatorType === 'resetTtl'">
+              <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
+            </div>
+            <div *ngSwitchCase="operatorType === 'add'">
+              <input nz-input placeholder="key 名称" [(ngModel)]="newKey" style="margin-bottom: 30px" />
+              <input nz-input placeholder="key 值" [(ngModel)]="redisValue" style="margin-bottom: 30px" />
+              <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
+            </div>
+            <ng-container *ngSwitchDefault></ng-container>
+          </ng-template>
+        </ng-container>
       </nz-modal>
     </nz-content>
   </nz-layout>
