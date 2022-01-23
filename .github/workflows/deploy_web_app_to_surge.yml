@@ -1,0 +1,16 @@
+name: Deploy Web Application
+
+on: [deployment]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Deploying to surge
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install surge and fire deployment
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: npm install -g surge
+      - run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
