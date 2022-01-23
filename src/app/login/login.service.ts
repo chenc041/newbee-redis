@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Constants } from '../constants/constants.enum';
 import { HttpClient } from '@angular/common/http';
-import { StoreService } from '../store/store.service';
+import { StoreService } from '../services/store.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { LoginType, Response } from '../types/index.interface';
-import { environment } from '../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
   constructor(
@@ -21,7 +21,7 @@ export class LoginService {
   login(data: LoginType) {
     return this.http
       .post<Response<{ accessToken: string }>>(environment.apiUrl + '/api/v1/redis/login', data)
-      .subscribe(val => {
+      .subscribe((val) => {
         if (val.statusCode === 200 && val.data) {
           sessionStorage.setItem(Constants.LOGIN_USER_NAME, data.name);
           sessionStorage.setItem(Constants.USER_TOKEN, val.data.accessToken);

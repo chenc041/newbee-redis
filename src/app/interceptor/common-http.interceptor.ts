@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Constants } from '../constants/constants.enum';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { Response } from '../types/index.interface';
 
 const CODE_MESSAGE = {
@@ -22,7 +22,7 @@ const CODE_MESSAGE = {
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。'
+  504: '网关超时。',
 };
 
 @Injectable()
@@ -41,13 +41,13 @@ export class CommonHttpInterceptor implements HttpInterceptor {
     if (request.url !== Constants.LOGIN_URL) {
       const authToken = sessionStorage.getItem(Constants.USER_TOKEN);
       authReq = request.clone({
-        headers: request.headers.set('Authorization', `Bearer ${authToken}`)
+        headers: request.headers.set('Authorization', `Bearer ${authToken}`),
       });
     }
     return next.handle(authReq).pipe(
       catchError((err: HttpRequest<any> & { status: number }) => {
         this.message.error(CODE_MESSAGE[err.status]);
-        this.redirect(Constants.UNLOGIN_FAILED_REDIRECT_URL);
+        this.redirect(Constants.LOGIN_FAILED_REDIRECT_URL);
         return [];
       })
     );

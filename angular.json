@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hello-ng-redis-app": {
+    "redis-web-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,17 +17,27 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "@ant-design/colors"
-            ],
+            "allowedCommonJsDependencies": ["@ant-design/colors"],
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
-            "styles": [],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "src/styles.less"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules/"]
             },
@@ -44,7 +54,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -69,20 +78,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "hmrWarning": false,
-            "browserTarget": "hello-ng-redis-app:build",
+            "browserTarget": "redis-web-client:build",
             "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "hello-ng-redis-app:build:production"
+              "browserTarget": "redis-web-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hello-ng-redis-app:build"
+            "browserTarget": "redis-web-client:build"
           }
         },
         "test": {
@@ -117,16 +125,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "hello-ng-redis-app:serve"
+            "devServerTarget": "redis-web-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "hello-ng-redis-app:serve:production"
+              "devServerTarget": "redis-web-client:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "hello-ng-redis-app"
+  "defaultProject": "redis-web-client"
 }
