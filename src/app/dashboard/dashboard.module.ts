@@ -13,6 +13,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -30,6 +31,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzToolTipModule,
     NzDropDownModule,
     NzPopconfirmModule,
+    SharedModule,
   ],
 })
 export class DashboardModule {}

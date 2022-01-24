@@ -9,10 +9,22 @@
     <nz-list class="list-item-wrap" [nzDataSource]="keys" [nzRenderItem]="defaultItem">
       <ng-template #defaultItem let-item>
         <nz-list-item (click)="handleItem(item)">
-          <a>
-            <i nz-icon [nzType]="'key'"></i>
-            {{ item }}
-          </a>
+          <ng-template [ngIf]="item.length >= 8">
+            <span class="redis-key-item" nz-tooltip nzTooltipPlacement="top" nzTooltipTitle="{{ item }}">
+              <a>
+                <i nz-icon [nzType]="'key'"></i>
+                {{ item | shortText }}
+              </a>
+            </span>
+          </ng-template>
+          <ng-template [ngIf]="item.length < 8">
+            <span class="redis-key-item">
+              <a>
+                <i nz-icon [nzType]="'key'"></i>
+                {{ item | shortText }}
+              </a>
+            </span>
+          </ng-template>
         </nz-list-item>
       </ng-template>
     </nz-list>
