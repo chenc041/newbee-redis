@@ -12,6 +12,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -19,6 +20,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
     FormsModule,
     NzIconModule,
     CommonModule,
+    NzFormModule,
     NzListModule,
     NzInputModule,
     NzModalModule,

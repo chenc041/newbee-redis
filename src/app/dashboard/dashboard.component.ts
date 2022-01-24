@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Constants } from '../constants/constants.enum';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private readonly service: DashboardService,
     private readonly message: NzMessageService
   ) {}
+
   keys: string[];
   content: string;
   userName: string;
@@ -30,11 +31,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   searchText$ = new Subject<string>();
   destroy$ = new Subject();
 
-  @Input() redisTtl = 0;
-  @Input() newKey: string;
-  @Input() redisKey: string;
-  @Input() expireTime: string;
-  @Input() redisValue: string;
+  redisTtl = 0;
+  newKey: string;
+  redisKey: string;
+  expireTime: string;
+  redisValue: string;
+  dbs = Array.from({ length: 16 }).fill(1);
 
   ngOnInit() {
     if (!sessionStorage.getItem(Constants.USER_TOKEN)) {
@@ -172,6 +174,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  handleSwitchDb(db: number) {
+    this.service.handleSwitchDb(db).subscribe((val) => {
+      if (val.statusCode === 200 && val.data > -1) {
+        this.selectedDb = val.data;
+        this.handleGetKeys();
+      } else {
+        this.message.error('DB 切换失败!');
+      }
+    });
   }
 
   handleCurrentUser() {

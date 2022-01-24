@@ -1,18 +1,18 @@
 <nz-layout>
   <nz-sider nzWidth="300px">
     <div class="redis-key-header">
-      <input nz-input placeholder="search" class="searchInput" (change)="handleSearchValue($event)" />
-      <a>
+      <input nz-input placeholder="search key" class="searchInput" (change)="handleSearchValue($event)" />
+      <a nz-button nzShape="circle" nzType="primary">
         <i nz-icon [nzType]="'plus'" (click)="handleOperator('新增', 'add')"></i>
       </a>
     </div>
     <nz-list class="list-item-wrap" [nzDataSource]="keys" [nzRenderItem]="defaultItem">
       <ng-template #defaultItem let-item>
         <nz-list-item (click)="handleItem(item)">
-          <span class="redis-key-item" nz-tooltip nzTooltipPlacement="rightBottom" nzTooltipTitle="{{ item }}">
+          <a>
             <i nz-icon [nzType]="'key'"></i>
             {{ item }}
-          </span>
+          </a>
         </nz-list-item>
       </ng-template>
     </nz-list>
@@ -30,7 +30,14 @@
           {{ userName }}
         </a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a>DB: {{ selectedDb }}</a>
+        <a nz-dropdown [nzDropdownMenu]="menu">DB: {{ selectedDb }}</a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item *ngFor="let db of dbs; index as indexDb" (click)="handleSwitchDb(indexDb)">
+              数据库: {{ indexDb }}
+            </li>
+          </ul>
+        </nz-dropdown-menu>
       </div>
     </nz-header>
     <nz-content>
@@ -76,20 +83,22 @@
         (nzOnOk)="handleOk()"
       >
         <ng-container *nzModalContent>
-          <ng-template [ngSwitch]="operatorType">
-            <div *ngSwitchCase="operatorType === 'rename'">
-              <input nz-input placeholder="key 名称" [(ngModel)]="newKey" />
-            </div>
-            <div *ngSwitchCase="operatorType === 'resetTtl'">
-              <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
-            </div>
-            <div *ngSwitchCase="operatorType === 'add'">
-              <input nz-input placeholder="key 名称" [(ngModel)]="newKey" style="margin-bottom: 30px" />
-              <input nz-input placeholder="key 值" [(ngModel)]="redisValue" style="margin-bottom: 30px" />
-              <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
-            </div>
-            <ng-container *ngSwitchDefault></ng-container>
-          </ng-template>
+          <div *ngIf="operatorType === 'rename'">
+            <div style="margin-bottom: 5px">Key 名称</div>
+            <input nz-input placeholder="key 名称" [(ngModel)]="newKey" />
+          </div>
+          <div *ngIf="operatorType === 'resetTtl'">
+            <div style="margin-bottom: 5px">过期时间</div>
+            <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
+          </div>
+          <div *ngIf="operatorType === 'add'">
+            <div style="margin-bottom: 5px">Key 名称</div>
+            <input nz-input placeholder="key 名称" [(ngModel)]="newKey" style="margin-bottom: 30px" />
+            <div style="margin-bottom: 5px">Key 值</div>
+            <input nz-input placeholder="key 值" [(ngModel)]="redisValue" style="margin-bottom: 30px" />
+            <div style="margin-bottom: 5px">过期时间</div>
+            <input nz-input placeholder="key 过期时间" [(ngModel)]="expireTime" />
+          </div>
         </ng-container>
       </nz-modal>
     </nz-content>
