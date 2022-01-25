@@ -21,4 +21,8 @@ jobs:
         with:
           node-version: 16
       - run: npm install -g surge
-      - run: surge dist redis-web-client-preview-${{github.event.pull_request.number}}.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+      - run: |
+          cd ./dist
+      - run: |
+          ls
+      - run: surge ./dist redis-web-client-preview-${{github.event.pull_request.number}}.surge.sh --token ${{ secrets.SURGE_TOKEN }}
