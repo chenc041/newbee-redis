@@ -21,5 +21,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
+      - run: |
+          echo "$GITHUB_PR_NUMBER"
       - run: npm install -g surge
       - run: surge ./dist redis-web-client-preview-${ GITHUB_PR_NUMBER }.surge.sh --token ${{ secrets.SURGE_TOKEN }}
