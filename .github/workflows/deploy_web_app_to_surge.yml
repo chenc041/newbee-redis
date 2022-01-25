@@ -1,16 +1,23 @@
 name: Deploy Web Application
 
-on: [deployment]
+on:
+  pull_request:
+    types: [opened]
+
+env:
+  GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Deploying to surge
     steps:
+      - name: build production app
+      - run: yarn run build
       - uses: actions/checkout@v2
       - name: Install surge and fire deployment
         uses: actions/setup-node@v2
         with:
           node-version: 16
       - run: npm install -g surge
-      - run: surge ./ redis-web-client.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+      - run: surge ./dist redis-web-client-preview-${ GITHUB_PR_NUMBER }.surge.sh --token ${{ secrets.SURGE_TOKEN }}
