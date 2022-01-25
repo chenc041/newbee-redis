@@ -1,6 +1,8 @@
 name: Deploy Web Application
 
-on: [deployment]
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
@@ -13,4 +15,6 @@ jobs:
         with:
           node-version: 16
       - run: npm install -g surge
-      - run: surge ./ redis-web-client.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+      - run: npm i
+      - run: npm run build
+      - run: surge ./dist redis-web-client-preview-${{github.event.pull_request.number}}.surge.sh --token ${{ secrets.SURGE_TOKEN }}

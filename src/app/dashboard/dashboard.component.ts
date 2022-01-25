@@ -181,6 +181,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       if (val.statusCode === 200 && val.data > -1) {
         this.selectedDb = val.data;
         this.handleGetKeys();
+        this.content = '';
+        this.redisKey = '';
       } else {
         this.message.error('DB 切换失败!');
       }
