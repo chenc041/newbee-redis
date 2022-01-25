@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploying to surge
     steps:
-      - uses: actions/checkout@v2
       - name: build production app
+        uses: actions/checkout@v2
       - run: yarn run build
       - uses: actions/checkout@v2
       - name: Install surge and fire deployment
