@@ -2,7 +2,7 @@ name: Deploy Web Application
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize, reopened]
 
 env:
   GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
