@@ -14,11 +14,11 @@ jobs:
       - run: npm i
       - run: npm run build
       - run: |
-          echo ls
+          ls
       - uses: actions/checkout@v2
       - name: Install surge and fire deployment
         uses: actions/setup-node@v2
         with:
           node-version: 16
       - run: npm install -g surge
-      - run: surge ./dist redis-web-client-preview-${{github.event.pull_request.number}}.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+      - run: surge dist redis-web-client-preview-${{github.event.pull_request.number}}.surge.sh --token ${{ secrets.SURGE_TOKEN }}
