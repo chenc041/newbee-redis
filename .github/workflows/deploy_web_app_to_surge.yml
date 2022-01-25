@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: build production app
         uses: actions/checkout@v2
-      - run: npm i @angular/cli -g
+      - run: npm i
       - run: npm run build
       - uses: actions/checkout@v2
       - name: Install surge and fire deployment
