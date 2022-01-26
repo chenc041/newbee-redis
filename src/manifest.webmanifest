@@ -1,6 +1,6 @@
 {
-  "name": "hello-redis",
-  "short_name": "hello-redis",
+  "name": "RedisWebClient",
+  "short_name": "RedisWebClient",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
