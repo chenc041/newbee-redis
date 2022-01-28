@@ -1,6 +1,9 @@
 name: release_app
 
-on: create
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build:
