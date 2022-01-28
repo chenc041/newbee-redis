@@ -4,11 +4,20 @@
 
 ## Example server
 
-<a href='https://redis-web-client.surge.sh' target="__blank">RedisWebClient</a>
+<a href='http://redis-web-client.surge.sh' target="__blank">RedisWebClient</a>
 
 ### Tech
 - pwa
 - ng-zorro-antd
+
+### Features
+✅ delete key-value
+
+✅ reset ttl
+
+✅ rename key
+
+✅ add key-value
 
 ## Development server
 
