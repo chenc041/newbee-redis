@@ -1,4 +1,4 @@
-name: Deploy Web Application
+name: Deploy Preview Web
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ jobs:
     name: Deploying to surge
     steps:
       - uses: actions/checkout@v2
-      - name: Install surge and fire deployment
+      - name: Install surge and trigger deployment
         uses: actions/setup-node@v2
         with:
           node-version: 16
