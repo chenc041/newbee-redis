@@ -10,6 +10,15 @@
 - pwa
 - ng-zorro-antd
 
+### Features
+✅ delete key-value
+
+✅ reset ttl
+
+✅ rename key
+
+✅ add key-value
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
