@@ -1,7 +1,7 @@
 <nz-layout>
   <nz-sider nzWidth="300px">
     <div class="redis-key-header">
-      <input nz-input placeholder="search key" class="searchInput" (change)="handleSearchValue($event)" />
+      <input nz-input placeholder="search key" class="searchInput" (input)="handleSearchValue($any($event))" />
       <a nz-button nzShape="circle" nzType="primary">
         <i nz-icon [nzType]="'plus'" (click)="handleOperator('新增', 'add')"></i>
       </a>
@@ -42,14 +42,13 @@
           {{ userName }}
         </a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a nz-dropdown [nzDropdownMenu]="menu">DB: {{ selectedDb }}</a>
-        <nz-dropdown-menu #menu="nzDropdownMenu">
-          <ul nz-menu nzSelectable>
-            <li nz-menu-item *ngFor="let db of dbs; index as indexDb" (click)="handleSwitchDb(indexDb)">
-              数据库: {{ indexDb }}
-            </li>
-          </ul>
-        </nz-dropdown-menu>
+        <nz-select [ngModel]="selectedDb" style="width: 100px" (ngModelChange)="handleSwitchDb($event)">
+          <nz-option
+            *ngFor="let db of dbs; index as indexDb"
+            [nzValue]="indexDb"
+            [nzLabel]="'DB - ' + indexDb"
+          ></nz-option>
+        </nz-select>
       </div>
     </nz-header>
     <nz-content>
