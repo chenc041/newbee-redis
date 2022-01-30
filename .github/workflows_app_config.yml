@@ -1,1 +1,2 @@
-previewUrl: 'http://redis-web-client-preview-${pull_num}.surge.sh'
+prOpenedReply: 'The ${preview} will be available after the CI is complete'
+previewUrl: 'https://redis-web-client-preview-${pull_num}.surge.sh'

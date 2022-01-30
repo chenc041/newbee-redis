@@ -44,8 +44,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     this.searchText$
       .pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
+        debounceTime(100),
         switchMap((value) => {
           let results: string[];
           if (value) {
@@ -64,12 +63,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     sessionStorage.removeItem(Constants.USER_TOKEN);
+    this.destroy$.next(1);
     this.destroy$.complete();
-    this.destroy$.unsubscribe();
   }
 
-  handleSearchValue(value: any) {
-    this.searchText$.next(value);
+  handleSearchValue(input: InputEvent) {
+    this.searchText$.next(input.data);
   }
 
   handleItem(key: string) {

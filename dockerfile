@@ -1,9 +1,15 @@
-FROM nginx:latest
+FROM nginx:1.19.6-alpine
 
-LABEL maintainer="double_cl@163.com"
+LABEL author="double_cl@163.com"
 
-COPY redis.conf /etc/nginx/conf.d
+WORKDIR /etc/nginx
 
-COPY ./dist /root/web/redis-app/
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80 443
+COPY dist /etc/nginx/dist
+
+RUN chmod -R o+rx /etc/nginx/dist/assets
+
+EXPOSE 80
+
+CMD ["nginx","-g","daemon off;"]

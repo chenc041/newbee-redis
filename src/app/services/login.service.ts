@@ -19,6 +19,7 @@ export class LoginService {
   ) {}
 
   login(data: LoginType) {
+    const msg$ = this.message.loading('登录中...');
     return this.http
       .post<Response<{ accessToken: string }>>(environment.apiUrl + '/api/v1/redis/login', data)
       .subscribe((val) => {
@@ -26,7 +27,10 @@ export class LoginService {
           sessionStorage.setItem(Constants.LOGIN_USER_NAME, data.name);
           sessionStorage.setItem(Constants.USER_TOKEN, val.data.accessToken);
           this.store.setSelectDb(data.db);
-          setTimeout(() => this.router.navigateByUrl(Constants.LOGIN_SUCCESS_REDIRECT_URL), 1000);
+          setTimeout(() => {
+            this.message.remove(msg$.messageId);
+            this.router.navigateByUrl(Constants.LOGIN_SUCCESS_REDIRECT_URL);
+          }, 1000);
         } else {
           this.message.error('登录失败!');
         }
