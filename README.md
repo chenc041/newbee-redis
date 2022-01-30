@@ -4,7 +4,7 @@
 
 ## Example server
 
-<a href='http://redis-web-client.surge.sh' target="__blank">RedisWebClient</a>
+<a href='https://redis.chenc.site' target="__blank">RedisWebClient</a>
 
 ### Tech
 - pwa
