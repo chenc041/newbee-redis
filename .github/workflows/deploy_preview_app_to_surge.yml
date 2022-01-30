@@ -15,6 +15,6 @@ jobs:
         with:
           node-version: 16
       - run: npm install -g surge pnpm
-      - run: pnpm i
+      - run: pnpm install
       - run: pnpm run build
       - run: surge ./dist redis-web-client-preview-${{github.event.pull_request.number}}.surge.sh --token ${{ secrets.SURGE_TOKEN }}
