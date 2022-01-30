@@ -14,8 +14,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
-          cache: npm
-      - run: npm install -g surge
-      - run: npm install
-      - run: npm run build
+      - run: npm install -g surge yarn
+      - run: yarn
+      - run: yarn build
       - run: surge ./dist redis-web-client-preview-${{github.event.pull_request.number}}.surge.sh --token ${{ secrets.SURGE_TOKEN }}
