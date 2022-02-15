@@ -8,6 +8,7 @@
 
 ### Tech
 - pwa
+- angular
 - ng-zorro-antd
 
 ### Features
@@ -19,7 +20,10 @@
 
 ✅ add key-value
 
-## Development server
+### Snapshot
+<img src='./snapshot/main.png' alt=''>
+
+## Develop
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
