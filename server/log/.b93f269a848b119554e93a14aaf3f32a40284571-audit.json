@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "log/.b93f269a848b119554e93a14aaf3f32a40284571-audit.json",
+    "files": [
+        {
+            "date": 1653220108660,
+            "name": "log/redis-server-error-2022-05-22-19.log",
+            "hash": "71c9a96bff16381fe556e5f9682544e3"
+        },
+        {
+            "date": 1653220861150,
+            "name": "log/redis-server-error-2022-05-22-20.log",
+            "hash": "a5d1e206d5e363ec89ee0d7f28304f06"
+        }
+    ],
+    "hashType": "md5"
+}
