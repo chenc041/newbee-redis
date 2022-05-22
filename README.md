@@ -6,27 +6,35 @@
 
 <a href='https://redis.chenc.site' target="__blank">RedisWebClient</a>
 
-### Tech
+### server tech
+- nestjs
+- typeorm
+- winston
+- jwt
+- redis
+
+### webapp tech
 - pwa
 - angular
 - ng-zorro-antd
 
 ### Features
 ✅ delete key-value
-
 ✅ reset ttl
-
 ✅ rename key
-
 ✅ add key-value
 
 ### Snapshot
-<img src='./snapshot/main.png' alt=''>
+<img src='/webapp/snapshot/main.png' alt=''>
 
 ## Develop
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Cd webapp and run `pnpm run start` for webapp dev server
+
+Cd server and run `pnpm run start:debug` for server dev
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Cd webapp and run `pnpm run build`
+
+Cd server and run `pnpm run start:prod`

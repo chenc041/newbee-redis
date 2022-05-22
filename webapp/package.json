@@ -1,0 +1,60 @@
+{
+  "name": "redis-web-client",
+  "version": "1.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "pub": "build.sh"
+  },
+  "description": "Redis web client built by angular",
+  "author": {
+    "name": "chenc",
+    "email": "double_cl@163.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@angular/animations": "~13.3.9",
+    "@angular/common": "~13.3.9",
+    "@angular/compiler": "~13.3.9",
+    "@angular/core": "~13.3.9",
+    "@angular/forms": "~13.3.9",
+    "@angular/platform-browser": "~13.3.9",
+    "@angular/platform-browser-dynamic": "~13.3.9",
+    "@angular/router": "~13.3.9",
+    "@angular/service-worker": "~13.3.9",
+    "ng-zorro-antd": "13.2.2",
+    "rxjs": "~7.5.5",
+    "tslib": "^2.4.0",
+    "zone.js": "~0.11.5"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~13.3.6",
+    "@angular/cli": "~13.3.6",
+    "@angular/compiler-cli": "~13.3.9",
+    "@angular/language-service": "~13.3.9",
+    "@ant-design/icons-angular": "^13.1.0",
+    "@types/jasmine": "~4.0.3",
+    "@types/jasminewd2": "~2.0.10",
+    "@types/node": "^17.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jasmine-core": "~4.1.1",
+    "jasmine-spec-reporter": "~7.0.0",
+    "karma": "~6.3.20",
+    "karma-chrome-launcher": "~3.1.1",
+    "karma-coverage-istanbul-reporter": "~3.0.3",
+    "karma-jasmine": "~5.0.1",
+    "karma-jasmine-html-reporter": "^1.7.0",
+    "prettier": "^2.6.2",
+    "protractor": "~7.0.0",
+    "ts-node": "~10.8.0",
+    "typescript": "~4.6.4"
+  }
+}

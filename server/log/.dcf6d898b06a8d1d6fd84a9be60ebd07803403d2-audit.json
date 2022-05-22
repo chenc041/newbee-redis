@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "log/.dcf6d898b06a8d1d6fd84a9be60ebd07803403d2-audit.json",
+    "files": [
+        {
+            "date": 1643362273896,
+            "name": "log/redis-connect-server-error-2022-01-28-17.log",
+            "hash": "1a59d811a602961c6c0be4075b289d8e"
+        }
+    ],
+    "hashType": "md5"
+}
