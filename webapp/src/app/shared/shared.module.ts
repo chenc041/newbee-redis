@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShortTextPipe } from 'webapp/src/app/shared/pipes/short-text.pipe';
+import { ShortTextPipe } from 'src/app/shared/pipes/short-text.pipe';
 
 @NgModule({
   declarations: [ShortTextPipe],

@@ -1,0 +1,42 @@
+{
+  "name": "RedisWebClient",
+  "short_name": "RedisWebClient",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "assets/icons/redis-72.svg",
+      "sizes": "72x72"
+    },
+    {
+      "src": "assets/icons/redis-96.svg",
+      "sizes": "96x96"
+    },
+    {
+      "src": "assets/icons/redis-128.svg",
+      "sizes": "128x128"
+    },
+    {
+      "src": "assets/icons/redis-144.svg",
+      "sizes": "144x144"
+    },
+    {
+      "src": "assets/icons/redis-152.svg",
+      "sizes": "152x152"
+    },
+    {
+      "src": "assets/icons/redis-192.svg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icons/redis-384.svg",
+      "sizes": "384x384"
+    },
+    {
+      "src": "assets/icons/redis-512.svg",
+      "sizes": "512x512"
+    }
+  ]
+}

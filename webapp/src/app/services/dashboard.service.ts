@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Response } from 'webapp/src/app/types/index.interface';
-import { StoreService } from 'webapp/src/app/services/store.service';
-import { environment } from 'webapp/src/environments/environment';
+import { Response } from 'src/app/types/index.interface';
+import { StoreService } from 'src/app/services/store.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',

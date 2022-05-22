@@ -1,16 +1,16 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import IORedis from 'ioredis';
+import { RedisOptions, RedisKey } from 'ioredis';
+import Redis from 'ioredis';
 import { SetValueByKey } from '../interface/redis.interface';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 @Injectable()
 export class RedisService {
-	redis: IORedis.Redis;
-
+	redis: Redis;
 	constructor(@Inject(WINSTON_MODULE_NEST_PROVIDER) private readonly loggerService: Logger) {}
 
-	async login(options: IORedis.RedisOptions): Promise<boolean> {
-		let result: false | IORedis.Redis;
+	async login(options: RedisOptions): Promise<boolean> {
+		let result: false | Redis;
 		this.loggerService.log('options', options);
 		try {
 			result = await this.connect(options);
@@ -25,35 +25,35 @@ export class RedisService {
 	}
 
 	async keys(pattern: string): Promise<string[]> {
-		return await this.redis.keys(pattern);
+		return this.redis.keys(pattern);
 	}
 
-	async getValueByKey(key: IORedis.KeyType): Promise<string> {
-		return await this.redis.get(key);
+	async getValueByKey(key: RedisKey): Promise<string> {
+		return this.redis.get(key);
 	}
 
-	async deleteKey(...key: IORedis.KeyType[]): Promise<number> {
-		return await this.redis.del(...key);
+	async deleteKey(...key: RedisKey[]): Promise<number> {
+		return this.redis.del(...key);
 	}
 
 	async setValueByKey({ key, value, expiryMode = 'EX', time = 300, setMode = 'NX' }: SetValueByKey): Promise<string> {
-		return await this.redis.set(key, value, expiryMode, time, setMode);
+		return this.redis.set(key, value, expiryMode, time, setMode);
 	}
 
-	async getKeyOfTtl(key: IORedis.KeyType): Promise<number> {
-		return await this.redis.ttl(key);
+	async getKeyOfTtl(key: RedisKey): Promise<number> {
+		return this.redis.ttl(key);
 	}
 
-	async setExpireOfKey(key: IORedis.KeyType, expireTime: number): Promise<1 | 0> {
-		return await this.redis.expire(key, expireTime);
+	async setExpireOfKey(key: RedisKey, expireTime: number | string): Promise<any> {
+		return this.redis.expire(key, expireTime);
 	}
 
-	async renameKey(key: IORedis.KeyType, newKey: IORedis.KeyType): Promise<string> {
-		return await this.redis.rename(key, newKey);
+	async renameKey(key: RedisKey, newKey: RedisKey): Promise<string> {
+		return this.redis.rename(key, newKey);
 	}
 
-	async checkKeyExist(key: IORedis.KeyType): Promise<number> {
-		return await this.redis.exists(key);
+	async checkKeyExist(key: RedisKey): Promise<number> {
+		return this.redis.exists(key);
 	}
 
 	async selectDb(db: number) {
@@ -65,9 +65,9 @@ export class RedisService {
 	}
 
 	// connect redis
-	private async connect(param: IORedis.RedisOptions): Promise<false | IORedis.Redis> {
-		return new Promise<false | IORedis.Redis>((resolve, reject) => {
-			const redis = new IORedis(param);
+	private async connect(param: RedisOptions): Promise<false | Redis> {
+		return new Promise<false | Redis>((resolve, reject) => {
+			const redis = new Redis(param);
 			redis.on('ready', () => resolve(redis));
 			redis.on('error', e => {
 				redis.quit();

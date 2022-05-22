@@ -1,23 +1,22 @@
-import IORedis from 'ioredis';
+import { RedisKey, RedisValue } from 'ioredis';
 
 /** 类型文件 **/
-
 export interface SetValueByKey {
-	key: IORedis.KeyType;
-	value: IORedis.ValueType;
-	expiryMode?: 'PX' | 'EX';
-	time?: number | string;
-	setMode?: 'NX' | 'XX';
+	key: RedisKey;
+	value: RedisValue;
+	expiryMode?: any;
+	time?: any;
+	setMode?: any;
 }
 
 export class ExpireOfKey {
-	key: IORedis.KeyType;
+	key: RedisKey;
 	expireTime: number;
 }
 
 export class RenameKey {
-	key: IORedis.KeyType;
-	newKey: IORedis.KeyType;
+	key: RedisKey;
+	newKey: RedisKey;
 }
 
 export interface Response<T> {

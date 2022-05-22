@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Constants } from 'webapp/src/app/constants/constants.enum';
+import { Constants } from 'src/app/constants/constants.enum';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { DashboardService } from 'webapp/src/app/services/dashboard.service';
-import { StoreService } from 'webapp/src/app/services/store.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
+import { StoreService } from 'src/app/services/store.service';
 import { Subject, of, takeUntil } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
-import { OperateType, ModalTitle } from 'webapp/src/app/types/index.interface';
+import { OperateType, ModalTitle } from 'src/app/types/index.interface';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

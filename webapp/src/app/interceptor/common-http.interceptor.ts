@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Constants } from 'webapp/src/app/constants/constants.enum';
+import { Constants } from 'src/app/constants/constants.enum';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { Response } from 'webapp/src/app/types/index.interface';
+import { Response } from 'src/app/types/index.interface';
 
 const CODE_MESSAGE = {
   200: '服务器成功返回请求的数据。',

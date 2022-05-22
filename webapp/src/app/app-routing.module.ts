@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { environment } from 'webapp/src/environments/environment';
-import { LoginComponent } from 'webapp/src/app/login/login.component';
-import { AboutComponent } from 'webapp/src/app/about/about.component';
-import { DashboardComponent } from 'webapp/src/app/dashboard/dashboard.component';
+import { environment } from 'src/environments/environment';
+import { LoginComponent } from 'src/app/login/login.component';
+import { AboutComponent } from 'src/app/about/about.component';
+import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 
 const routes: Routes = [
   {

@@ -25,7 +25,7 @@
 ✅ add key-value
 
 ### Snapshot
-<img src='/webapp/snapshot/main.png' alt=''>
+<img src='/snapshot/main.png' alt=''>
 
 ## Develop
 

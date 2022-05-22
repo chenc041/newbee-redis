@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Constants } from 'webapp/src/app/constants/constants.enum';
+import { Constants } from 'src/app/constants/constants.enum';
 import { HttpClient } from '@angular/common/http';
-import { StoreService } from 'webapp/src/app/services/store.service';
+import { StoreService } from 'src/app/services/store.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { LoginType, Response } from 'webapp/src/app/types/index.interface';
-import { environment } from 'webapp/src/environments/environment';
+import { LoginType, Response } from 'src/app/types/index.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
