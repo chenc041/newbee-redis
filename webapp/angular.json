@@ -18,7 +18,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "allowedCommonJsDependencies": ["@ant-design/colors"],
             "outputPath": "../server/client",
@@ -81,19 +81,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "redis-web-client:build",
+            "buildTarget": "redis-web-client:build",
             "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "redis-web-client:build:production"
+              "buildTarget": "redis-web-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "redis-web-client:build"
+            "buildTarget": "redis-web-client:build"
           }
         },
         "test": {
@@ -139,5 +139,4 @@
       }
     }
   },
-  "defaultProject": "redis-web-client"
 }
