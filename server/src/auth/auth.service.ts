@@ -1,11 +1,14 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { RedisService } from '../redis/redis.service';
+import { RedisService } from '~/redis/redis.service';
 import { JwtService } from '@nestjs/jwt';
 import { RedisOptions } from 'ioredis';
 
 @Injectable()
 export class AuthService {
-	constructor(private readonly redisService: RedisService, private readonly jwtService: JwtService) {}
+	constructor(
+		private readonly redisService: RedisService,
+		private readonly jwtService: JwtService
+	) {}
 
 	async login(payload: RedisOptions & { name: string }) {
 		const result = await this.redisService.login(payload);

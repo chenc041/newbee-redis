@@ -1,10 +1,10 @@
 import type { RedisOptions } from 'ioredis';
 import { AuthGuard } from '@nestjs/passport';
 import { RedisService } from './redis.service';
-import { AuthService } from '../auth/auth.service';
-import { User } from '../decorator/user.decorator';
-import { SetValueByKey, Response, ExpireOfKey, RenameKey } from '../interface/redis.interface';
-import { Controller, Post, Body, Get, Query, Delete, Put, UseGuards, ParseIntPipe } from '@nestjs/common';
+import { AuthService } from '~/auth/auth.service';
+import { User } from '~/decorator/user.decorator';
+import { ExpireOfKey, RenameKey, Response, SetValueByKey } from '~/interface/redis.interface';
+import { Body, Controller, Delete, Get, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 
 /**
  * @author chenc
@@ -12,7 +12,10 @@ import { Controller, Post, Body, Get, Query, Delete, Put, UseGuards, ParseIntPip
  */
 @Controller('redis')
 export class RedisController {
-	constructor(private readonly authService: AuthService, private readonly redis: RedisService) {}
+	constructor(
+		private readonly authService: AuthService,
+		private readonly redis: RedisService
+	) {}
 
 	@Post('login')
 	async login(@Body() params: RedisOptions & { name: string }): Promise<Response<{ accessToken: string }>> {

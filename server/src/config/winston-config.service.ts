@@ -3,6 +3,31 @@ import 'winston-daily-rotate-file';
 import { Injectable } from '@nestjs/common';
 import { WinstonModuleOptions, WinstonModuleOptionsFactory } from 'nest-winston';
 
+const { json, timestamp, combine } = winston.format;
+
+const infoFilter = winston.format(info => {
+	return info.level === 'info' || info.level === 'warn' ? info : false;
+});
+
+const errorFilter = winston.format(info => {
+	return info.level === 'error' ? info : false;
+});
+
+const debugFilter = winston.format(info => {
+	return info.level === 'debug' ? info : false;
+});
+
+const warnFilter = winston.format(info => {
+	return info.level === 'warn' ? info : false;
+});
+
+const levelFormat = {
+	error: errorFilter,
+	info: infoFilter,
+	warn: warnFilter,
+	debug: debugFilter
+};
+
 @Injectable()
 export class WinstonConfigService implements WinstonModuleOptionsFactory {
 	createWinstonModuleOptions(): WinstonModuleOptions {
@@ -11,25 +36,19 @@ export class WinstonConfigService implements WinstonModuleOptionsFactory {
 		if (NODE_ENV === 'development') {
 			transports.push(new winston.transports.Console());
 		} else {
-			const fileInfoTransport = new winston.transports.DailyRotateFile({
-				level: 'info',
-				maxSize: '5m',
-				maxFiles: '14d',
-				zippedArchive: true,
-				datePattern: 'YYYY-MM-DD',
-				filename: 'log/redis-server-info-%DATE%.log'
+			['error', 'debug', 'info', 'warn'].forEach(item => {
+				transports.push(
+					new winston.transports.DailyRotateFile({
+						level: item,
+						maxSize: '5m',
+						maxFiles: '14d',
+						zippedArchive: true,
+						datePattern: 'YYYY-MM-DD',
+						format: combine(levelFormat[item](), timestamp(), json()),
+						filename: `log/api-${item}-%DATE%.log`
+					})
+				);
 			});
-
-			const fileErrorTransport = new winston.transports.DailyRotateFile({
-				level: 'error',
-				maxSize: '5m',
-				maxFiles: '14d',
-				zippedArchive: true,
-				datePattern: 'YYYY-MM-DD-HH',
-				filename: 'log/redis-server-error-%DATE%.log'
-			});
-			transports.push(fileInfoTransport);
-			transports.push(fileErrorTransport);
 		}
 		return {
 			format: winston.format.json(),

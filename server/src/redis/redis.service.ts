@@ -1,7 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { RedisOptions, RedisKey } from 'ioredis';
-import Redis from 'ioredis';
-import { SetValueByKey } from '../interface/redis.interface';
+import Redis, { RedisKey, RedisOptions } from 'ioredis';
+import { SetValueByKey } from '~/interface/redis.interface';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 @Injectable()

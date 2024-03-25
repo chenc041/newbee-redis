@@ -6,10 +6,10 @@
     "auditLog": "log/.e015f8a9ab21a1f9b03e7d9740bda58409881e55-audit.json",
     "files": [
         {
-            "date": 1653220108658,
-            "name": "log/redis-server-info-2022-05-22.log",
-            "hash": "f2ad448016eb1c1a273f2fc4842b29e2"
+            "date": 1711372989795,
+            "name": "log\\redis-server-info-2024-03-25.log",
+            "hash": "467535c8834c426c6c6d155556816f81231a21afb59aa815e40de9184d5802ad"
         }
     ],
-    "hashType": "md5"
+    "hashType": "sha256"
 }
